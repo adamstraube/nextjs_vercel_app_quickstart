@@ -1,5 +1,5 @@
 import { Redis } from '@upstash/redis';
-import { SessionStore, SessionStorePayload, initAuth0 } from '@auth0/nextjs-auth0';
+import { SessionStore, SessionStorePayload, initAuth0, Auth0Server } from '@auth0/nextjs-auth0';
 
 class Store implements SessionStore {
   private redis: Redis;
@@ -24,9 +24,18 @@ class Store implements SessionStore {
   }
 }
 
-export default initAuth0({
-  session: {
-    store: new Store()
-  },
-  backchannelLogout: true
-});
+let _auth0: Auth0Server;
+
+export default function auth0() {
+  const config = {
+    session: {
+      store: new Store(),
+    },
+    backchannelLogout: true
+  }
+
+  if (!_auth0) {
+    _auth0 = initAuth0(config);
+  }
+  return _auth0;
+};
