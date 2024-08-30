@@ -1,9 +1,10 @@
 'use client';
 
 import React from 'react';
-import { withPageAuthRequired } from '@auth0/nextjs-auth0/client';
+// import { withPageAuthRequired } from '@auth0/nextjs-auth0/client';
+import auth0 from '../../../../lib/auth0';
 
-export default withPageAuthRequired(function CSRPage() {
+export default auth0().withPageAuthRequired(function CSRPage() {
   return (
     <>
       <div className="mb-5" data-testid="csr">

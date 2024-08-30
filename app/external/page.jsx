@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { Button } from 'reactstrap';
-import { withPageAuthRequired } from '@auth0/nextjs-auth0/client';
+import auth0 from '../../../../lib/auth0';
+// import { withPageAuthRequired } from '@auth0/nextjs-auth0/client';
 
 import Loading from '../../components/Loading';
 import ErrorMessage from '../../components/ErrorMessage';
@@ -69,7 +70,7 @@ function External() {
   );
 }
 
-export default withPageAuthRequired(External, {
+export default auth0().withPageAuthRequired(External, {
   onRedirecting: () => <Loading />,
   onError: error => <ErrorMessage>{error.message}</ErrorMessage>
 });
