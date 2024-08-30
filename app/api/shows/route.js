@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import auth0 from '../../../lib/auth0';
 
+const auth0 = auth0();
+
 export const GET = auth0.withApiAuthRequired(async function shows(req) {
   try {
     const res = new NextResponse();
