@@ -1,11 +1,12 @@
 import React from 'react';
-import { getSession, withPageAuthRequired } from '@auth0/nextjs-auth0';
+// import { getSession, withPageAuthRequired } from '@auth0/nextjs-auth0';
 
+import auth0 from '../../../../lib/auth0';
 import Highlight from '../../components/Highlight';
 
-export default withPageAuthRequired(
+export default auth0().withPageAuthRequired(
   async function SSRPage() {
-    const { user } = await getSession();
+    const { user } = await auth0().getSession();
     return (
       <>
         <div className="mb-5" data-testid="ssr">
