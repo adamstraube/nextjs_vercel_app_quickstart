@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Button } from 'reactstrap';
-import auth0 from '../../../../lib/auth0';
+import auth0 from '../../lib/auth0';
 // import { withPageAuthRequired } from '@auth0/nextjs-auth0/client';
 
 import Loading from '../../components/Loading';
