@@ -1,12 +1,10 @@
 import { NextResponse } from 'next/server';
 import auth0 from '../../../lib/auth0';
 
-const auth0 = auth0();
-
-export const GET = auth0.withApiAuthRequired(async function shows(req) {
+export const GET = auth0().withApiAuthRequired(async function shows(req) {
   try {
     const res = new NextResponse();
-    const { accessToken } = await auth0.getAccessToken(req, res, {
+    const { accessToken } = await auth0().getAccessToken(req, res, {
       scopes: ['read:shows']
     });
     const apiPort = process.env.API_PORT || 3001;
